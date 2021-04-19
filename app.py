@@ -14,7 +14,11 @@ def index():
 def about():
     return render_template("about.html", hello = "H J Bang")
 
- 
+@app.route('/Question')
+def Qeustion():
+    return render_template("Question.html")
+
+    
 
 
 

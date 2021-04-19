@@ -72,7 +72,7 @@ function show(char) {
     answer.value = null;
 }
 
-function print() {
+function print_question() {
     var text = "";
     for (var i = 1; i < 10;i++) {
         var array = JSON.parse(localStorage.getItem(i));

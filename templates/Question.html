@@ -4,7 +4,7 @@
 <!-- Creating a basic table. -->
 <html>
    <head>   
-      <script src = "Question.js"></script>
+      <script src = "..\static\Question.js"></script>
       <style>
          .left-box {
            float: left;
@@ -25,7 +25,7 @@
    <body>
       <div class = "left-box" id = 'menu'>
          <ul><button onclick = "show('make')" > 새로운 문제 추가 </button></ul>
-         <ul><button onclick = "print()" > 저장된 문제 출력 </button></ul>
+         <ul><button onclick = "print_question()" > 저장된 문제 출력 </button></ul>
       </div>
       <div class="right-box" id = 'make' style="display:none;">
          <form>
