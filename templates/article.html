@@ -1,16 +1,16 @@
 {% extends "layouts_yellow.html" %}
 {% block body %}
 <h1 class="display-4">ARTICLES PAGE</h1>
-<p class="lead">This is articles page. To see the detailed description, click the title.</p>
+<p class="lead">This is detailed article page.</p>
 <hr class="my-4">
 <a class="btn btn-warning btn-lg" href="/" role="button">to HOME</a>
-<a class="btn btn-warning btn-lg" href="/about" role="button">to ABOUT</a>
+<a class="btn btn-warning btn-lg" href="/articles" role="button">go BACK</a>
 <p></p>
 
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table mr-1"></i>
-        Articles
+        Selected Article = {{article['title']}}
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -26,16 +26,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                  {% for article in articles %}
                     <tr>
                       <th scope="row">{{ article['id'] }}</th>
-                      <td><a href="/article/{{article['id']}}">{{ article['title'] }}</a></td>
-                      <td>{{ article['body'][0:70]}}...</td>
+                      <td><a href="/articles">{{ article['title'] }}</a></td>
+                      <td>{{ article['body']}}</td>
                       <td>{{ article['author'] }}</td>
                       <td>{{ article['create_date'] }}</td>
                       <td><button type="button" class="btn btn-danger">Edit</button></td>
                     </tr>
-                {% endfor %}
                     </tbody>
                 </table>
             </div>

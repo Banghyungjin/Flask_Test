@@ -21,6 +21,13 @@ def articles():
     #print(articles[0]['title'])
     return render_template("articles.html", articles = articles)
 
+@app.route('/article/<int:id>') #<id> 를 params 라고 해서 메소드에서 써먹을 수 있다.
+def article(id):
+    articles = Articles()
+    article = articles[id - 1]
+    return render_template("article.html", article = article)
+    
+
 @app.route('/Question')
 def Qeustion():
     return render_template("Question.html")
