@@ -3,7 +3,8 @@
 <!-- Fig. 2.12: table1.html -->
 <!-- Creating a basic table. -->
 <html>
-   <head>   
+   <head>
+      <H1>웹응용프로그래밍 중간고사 3번</H1>
       <script src = "..\static\Question.js"></script>
       <style>
          .left-box {
@@ -27,6 +28,7 @@
          <ul><button onclick = "show('make')" > 새로운 문제 추가 </button></ul>
          <ul><button onclick = "print_question()" > 저장된 문제 출력 </button></ul>
       </div>
+      <div class="center-box"></div>
       <div class="right-box" id = 'make' style="display:none;">
          <form>
             <p> -  문제 번호  <input type="text" id = "Qnumber" required></p>
