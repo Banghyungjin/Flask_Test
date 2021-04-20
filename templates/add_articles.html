@@ -1,7 +1,7 @@
 {% extends "layouts_yellow.html" %}
 {% block body %}
 <h1 class="display-4">ARTICLES PAGE - ADD</h1>
-<p class="lead">This is detailed article page.</p>
+<p class="lead">This page is for adding new articles.</p>
 <hr class="my-4">
 <!--    <a class="btn btn-warning btn-lg" href="/" role="button">to HOME</a>
 <a class="btn btn-warning btn-lg" href="/articles" role="button">go BACK</a>    -->
@@ -9,9 +9,7 @@
 
 <div class="card mb-4">
     <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        <h4>Please Enter Belows</h4>
-        <p></p>
+        <h3>Please Enter Belows</h3>
         <form action="/add_articles" method="POST" onsubmit="return confirm('이렇게 작성하시겠습니까?')">
             <div class="form-group">
                 <label>  TITLE</label>
