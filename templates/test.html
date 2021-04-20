@@ -23,21 +23,17 @@
                         <th>AUTHOR</th>
                         <th>DATE</th>
                         <th>EDIT</th>
-                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
                   {% for article in articles %}
                     <tr>
-                        <th scope="row">{{ article[0] }}</th>
-                        <td><a href="/article/{{article[0]}}">{{ article[1] }}</a></td>
-                        <td><a>{{ article[2][0:40] }}...</a></td>
-                        <td><a>{{ article[3] }}</a></td>
-                        <td><a>{{ article[4] }}</a></td>
-                        <td><button type="button" class="btn btn-warning">Edit</button></td>
-                        <td><form action="/delete/{{article[0]}}" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?')">
-                            <input type="submit" class="btn btn-danger" value = "Del"></button>
-                        </form></td>
+                      <th scope="row">{{ article[0] }}</th>
+                      <td><a href="/article/{{article[0]}}">{{ article[1] }}</a></td>
+                      <td><a>{{ article[2][0:40] }}...</a></td>
+                      <td><a>{{ article[3] }}</a></td>
+                      <td><a>{{ article[4] }}</a></td>
+                      <td><button type="button" class="btn btn-danger">Edit</button></td>
                     </tr>
                 {% endfor %}
                     </tbody>
