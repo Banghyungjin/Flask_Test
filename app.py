@@ -73,7 +73,6 @@ def add_articles():
 def delete(id):
     cursor = db.cursor()
     sql_insert = "DELETE FROM topic WHERE id = {};".format(id) 
-    
     cursor.execute(sql_insert)
     db.commit()
     topic = cursor.fetchall()
