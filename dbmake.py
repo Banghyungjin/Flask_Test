@@ -29,7 +29,7 @@ sql_insert_2 = "INSERT INTO `busan`.`topic` (`title`, `body`, `author`) VALUES (
 val = [title, body, author]
 
 cursor = db.cursor()
-cursor.execute(sql_insert_2, val)
+cursor.execute(sql)
 print(cursor.rowcount, "개의 줄이 추가되었습니다.")
 db.commit()
 db.close()
