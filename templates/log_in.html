@@ -1,3 +1,11 @@
+{%with messages = get_flashed_messages()%}
+    {%if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {%endif%}
+{%endwith%}
+
 {% extends "layouts/layouts_log_in.html" %}
 {% block body %}
 <div>
@@ -10,6 +18,7 @@
 <!--    <a class="btn btn-warning btn-lg" href="/" role="button">to HOME</a>
 <a class="btn btn-warning btn-lg" href="/articles" role="button">go BACK</a>    -->
 <p></p>
+
 
 <div class="card mb-4">
     <div class="card-header">
