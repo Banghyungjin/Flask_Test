@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash, session
 from data import Articles
+from passlib.hash import sha256_crypt
 import pymysql
 
 app = Flask(__name__)
 
-app.debug = True
+app.secret_key = 'my_secret_key'
 
+app.debug = True
+# db 로그인
 db = pymysql.connect(
     host = 'localhost',
     port = 3306,
@@ -15,31 +18,65 @@ db = pymysql.connect(
 )
 
 
-@app.route('/', methods = ['GET'])
+@app.route('/', methods = ['GET', 'POST'])
 def index():
     # return "Hello World !"
-    return render_template("index.html", data = "Bang")
+    if session.get('is_logged') is not None:
+        return render_template("index.html", user = session.get('is_logged'))
+    elif request.method == "POST":
+        db = pymysql.connect(
+            host = 'localhost',
+            port = 3306,
+            user = 'root',
+            password = '1234',
+            db = 'busan'
+        )
+        cursor = db.cursor()
+        sql = 'SELECT username, password FROM users;'
+        cursor.execute(sql)
+        users = cursor.fetchall()
+        usid = request.form['Username']
+        ps = request.form['psword']
+        for user in users :
+            if user[0] == usid and sha256_crypt.verify(ps, user[1]):
+                session['is_logged'] = usid
+                return render_template("index.html", user = session.get('is_logged'))
+        return redirect("/")
+    else:
+        return render_template("log_in.html")
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    if session.get('is_logged') is not None:
+        return render_template("about.html")
+    else:
+        return render_template("log_in.html")
 
-@app.route('/articles')
+
+@app.route('/log_out')
+def log_out():
+    session.clear()
+    return render_template("log_in.html")
+
+@app.route('/articles', methods = ["GET", "POST"])
 def articles():
-    db = pymysql.connect(
-        host = 'localhost',
-        port = 3306,
-        user = 'root',
-        password = '1234',
-        db = 'busan'
-    )
-    cursor = db.cursor()
-    sql = 'SELECT * FROM topic'
-    cursor.execute(sql)
-    topics = cursor.fetchall()
-    #articles = Articles()
-    #print(articles[0]['title'])
-    return render_template("articles.html", articles = topics)
+    if session.get('is_logged') is not None:
+        db = pymysql.connect(
+            host = 'localhost',
+            port = 3306,
+            user = 'root',
+            password = '1234',
+            db = 'busan'
+        )
+        cursor = db.cursor()
+        sql = 'SELECT * FROM topic'
+        cursor.execute(sql)
+        topics = cursor.fetchall()
+        #articles = Articles()
+        #print(articles[0]['title'])
+        return render_template("articles.html", articles = topics)
+    else:
+        return render_template("log_in.html")
 
 @app.route('/article/<int:id>') #<id> 를 params 라고 해서 메소드에서 써먹을 수 있다.
 def article(id):
@@ -97,6 +134,24 @@ def change_articles(id):
     cursor.execute(sql)
     topic = cursor.fetchone()
     return render_template("change_articles.html", article = topic)
+
+@app.route('/register', methods = ["GET", "POST"])
+def register():
+    cursor = db.cursor()
+    if request.method == "POST":
+        name = request.form['Name']
+        email = request.form['Email']
+        username = request.form['Username']
+        psword = sha256_crypt.encrypt(request.form['psword'])
+        sql_insert = "INSERT INTO `busan`.`users` (`name`, `email`, `username` , `password`) VALUES (%s, %s, %s, %s);" 
+        val = [name, email, username, psword]
+        cursor.execute(sql_insert, val)
+        db.commit()
+        topic = cursor.fetchall()
+        #db.close()
+        return redirect("/")
+    else:
+        return render_template("register.html")
 
 # @app.route('/Question')
 # def Qeustion():

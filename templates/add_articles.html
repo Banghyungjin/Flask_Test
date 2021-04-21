@@ -1,4 +1,4 @@
-{% extends "layouts_yellow.html" %}
+{% extends "layouts/layouts_yellow.html" %}
 {% block body %}
 <div>
     <h1 class="display-2" style="display: inline;">ARTICLES PAGE</h1>
@@ -13,7 +13,7 @@
 
 <div class="card mb-4">
     <div class="card-header">
-        <h4>PLEASE FILL CONTENTS BELOW FOR ADDING NEW ONE</h4>
+        <h4>Please Fill Contents Below To Add New One.</h4>
         <form action="/add_articles" method="POST" onsubmit="return confirm('이렇게 작성하시겠습니까?')">
             <div class="form-group">
                 <label>  - TITLE -</label>

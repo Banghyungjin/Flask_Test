@@ -1,8 +1,16 @@
-{% extends "layouts_blue.html" %}
+{% extends "layouts/layouts_main.html" %}
 {% block body %}
 <h1 class="display-1">WELCOME !</h1>
 <p class="lead">This Application is build using by python and Flask Framework</p>
+<p class="lead">You are now logged in as {{user}}</p>
 <hr class="my-4">
-<a class="btn btn-success btn-lg" href="/about" role="button">ABOUT</a>
-<a class="btn btn-warning btn-lg" href="/articles" role="button">ARTICLES</a>
+<div>
+    <a class="btn btn-success btn-lg" href="/about" role="button">ABOUT</a>
+    <a class="btn btn-warning btn-lg" href="/articles" role="button">ARTICLES</a>
+</div>
+<p></p>
+<div>
+    <a class="btn btn-danger btn-lg" href="/log_out" role="button" onclick="return confirm('정말 로그아웃하시겠습니까?')">LOG OUT</a>
+</div>
+
 {% endblock %}

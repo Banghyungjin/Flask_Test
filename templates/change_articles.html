@@ -1,4 +1,4 @@
-{% extends "layouts_yellow.html" %}
+{% extends "layouts/layouts_yellow.html" %}
 {% block body %}
 <div>
     <h1 class="display-2" style="display: inline;">ARTICLES PAGE</h1>
@@ -12,7 +12,7 @@
 
 <div class="card mb-4">
     <div class="card-header">
-        <h4>PLEASE CHANGE CONTENTS BELOW</h4>
+        <h4>Please Change Contents Below.</h4>
         <form action="/change_articles/{{article[0]}}" method="POST" onsubmit="return confirm('이렇게 수정하시겠습니까?')">
             <div class="form-group">
                 <label>  - TITLE -</label>

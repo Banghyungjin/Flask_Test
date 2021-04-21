@@ -1,15 +1,18 @@
-{% extends "layouts_menu.html" %}
+{% extends "layouts/layouts_menu.html" %}
 {% block body %}
 <h1 class="display-2">ARTICLES PAGE</h1>
 <p class="lead">This is articles page. To see the detailed description, click the title.</p>
 <hr class="my-4">
-<a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
-<a class="btn btn-success btn-lg" href="/about" role="button">ABOUT</a>
+<div>
+    <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
+    <a class="btn btn-success btn-lg" href="/about" role="button">ABOUT</a>
+</div>
+
 <p></p>
 
 <div class="card mb-4">
     <div class="card-header">
-        <h3>NOW ARTICLES</h3>
+        <h3>ARTICLES TABLE</h3>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -31,7 +34,13 @@
                     <tr>
                         <th scope="row">{{ article[0] }}</th>
                         <td><a href="/article/{{article[0]}}">{{ article[1] }}</a></td>
-                        <td><a>{{ article[2][0:40] }}...</a></td>
+                        <td>
+                            {% if article[2]|length > 50 %}
+                            <a>{{ article[2][0:50] }}...</a>
+                            {% else %}
+                            <a>{{ article[2] }}</a>
+                            {% endif %}
+                        </td>
                         <td><a>{{ article[3] }}</a></td>
                         <td><a>{{ article[4] }}</a></td>
                         <td><form action="/change_articles/{{article[0]}}" method="GET">
