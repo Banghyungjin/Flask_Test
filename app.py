@@ -15,7 +15,6 @@ db = pymysql.connect(
 )
 
 
-
 @app.route('/', methods = ['GET'])
 def index():
     # return "Hello World !"
@@ -94,16 +93,14 @@ def change_articles(id):
         return redirect("/articles")
     else:
         cursor = db.cursor()
-    #articles = Articles()
-    #article = articles[id - 1]
     sql = 'SELECT * FROM topic WHERE id = {};'.format(id)
     cursor.execute(sql)
     topic = cursor.fetchone()
     return render_template("change_articles.html", article = topic)
 
-@app.route('/Question')
-def Qeustion():
-    return render_template("Question.html")
+# @app.route('/Question')
+# def Qeustion():
+#     return render_template("Question.html")
 
 if __name__ == '__main__':
     app.run()
