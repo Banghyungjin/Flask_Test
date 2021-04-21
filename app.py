@@ -79,6 +79,28 @@ def delete(id):
     #db.close()
     return redirect("/articles")
 
+@app.route('/change_articles/<int:id>', methods = ["GET", "POST"])
+def change_articles(id):
+    cursor = db.cursor()
+    if request.method == "POST":
+        desc = request.form['Desc']
+        title = request.form['Title']
+        author = request.form['Author']
+        sql_change = "UPDATE topic SET title = %s, body = %s, author = %s, create_date = NOW() WHERE (id = %s);" 
+        val = [title, desc, author, id]
+        cursor.execute(sql_change, val)
+        db.commit()
+        topic = cursor.fetchall()
+        return redirect("/articles")
+    else:
+        cursor = db.cursor()
+    #articles = Articles()
+    #article = articles[id - 1]
+    sql = 'SELECT * FROM topic WHERE id = {};'.format(id)
+    cursor.execute(sql)
+    topic = cursor.fetchone()
+    return render_template("change_articles.html", article = topic)
+
 @app.route('/Question')
 def Qeustion():
     return render_template("Question.html")

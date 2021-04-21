@@ -34,7 +34,9 @@
                         <td><a>{{ article[2][0:40] }}...</a></td>
                         <td><a>{{ article[3] }}</a></td>
                         <td><a>{{ article[4] }}</a></td>
-                        <td><button type="button" class="btn btn-warning">Edit</button></td>
+                        <td><form action="/change_articles/{{article[0]}}" method="GET">
+                            <input type="submit" class="btn btn-warning" value = "Edit"></button>
+                        </form></td>
                         <td><form action="/delete/{{article[0]}}" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?')">
                             <input type="submit" class="btn btn-danger" value = "Del"></button>
                         </form></td>
@@ -44,9 +46,7 @@
             </table>
         </div>
         <div><a class="btn btn-success btn-md" href="/add_articles" role="button">ADD</a></div>
-            
-            
-        </div>
     </div>
+</div>
     
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layouts_yellow.html" %}
 {% block body %}
-<h1 class="display-4">ARTICLES PAGE - ADD</h1>
-<p class="lead">This page is for adding new article.</p>
+<h1 class="display-4">ARTICLES PAGE - CHANGE</h1>
+<p class="lead">This page is for changing an article.</p>
 <hr class="my-4">
 <!--    <a class="btn btn-warning btn-lg" href="/" role="button">to HOME</a>
 <a class="btn btn-warning btn-lg" href="/articles" role="button">go BACK</a>    -->
@@ -9,23 +9,23 @@
 
 <div class="card mb-4">
     <div class="card-header">
-        <h4>PLEASE FILL CONTENTS BELOW FOR ADDING NEW ONE</h4>
-        <form action="/add_articles" method="POST" onsubmit="return confirm('이렇게 작성하시겠습니까?')">
+        <h4>PLEASE CHANGE CONTENTS BELOW</h4>
+        <form action="/change_articles/{{article[0]}}" method="POST" onsubmit="return confirm('이렇게 수정하시겠습니까?')">
             <div class="form-group">
                 <label>  - TITLE -</label>
-                <input class="form-control" type="text" name='Title' placeholder="input your title" required>
+                <input class="form-control" type="text" name='Title' value={{article[1]}} placeholder="input your title" required>
             </div>
             <div class="form-group">
                 <label>  - DESCRIPTON -</label>
-                <textarea class="form-control" name="Desc" placeholder="input your description" required></textarea>
+                <textarea class="form-control" rows="10" name="Desc" placeholder="input your description" required>{{article[2]}}</textarea>
             </div>
             <div class="form-group">
                 <label>  - AUHOR -</label>
-                <input type="text" name='Author' class="form-control" placeholder="input your name" required>
+                <input type="text" name='Author' value="{{article[3]}}" class="form-control" placeholder="input your name" required>
                 
             </div>
             <div class="form-group">
-                <input class="btn btn-success btn-lg btn-block" type="submit" value="ADD" >
+                <input class="btn btn-success btn-lg btn-block" type="submit" value="CHANGE" >
             </div>
             <div class="form-group">
                 <a class="btn btn-warning btn-lg btn-block" href="/articles"> CANCEL</a>
