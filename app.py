@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from io import BytesIO, StringIO    #그래프를 이미지로 저장하기위한 변환 라이브러리
 
+
 app = Flask(__name__)
 
 app.secret_key = 'my_secret_key'
